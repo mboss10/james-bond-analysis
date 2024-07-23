@@ -7,8 +7,12 @@ def analyze_ratings_correlation(df):
 
 def analyze_movie_lengths(df):
     """Analyze movie lengths over time."""
-    return df.groupby(df['Year'])['Film_Length'].mean()
+    #group = df['Year']//10*10  # or df['year'].round(-1)
+    #grouped = df.groupby([group])['Film_Length'].mean()
+    #return grouped
+    return df.groupby(df['Year'].round(-1))['Film_Length'].mean()
 
 def analyze_kills_vs_ratings(df):
     """Analyze relationship between Bond's kills and movie ratings."""
-    return df[['Kills_Bond', 'Avg_User_IMDB', 'Avg_User_Rtn_Tom']].corr()
+    df_renamed = df.rename(columns={"Kills_Bond": "Bond's Kills", "Avg_User_IMDB": "IMDB rating","Avg_User_Rtn_Tom":"Rotten Tomatoes rating"})
+    return df_renamed[["Bond's Kills", "IMDB rating", "Rotten Tomatoes rating"]].corr()
