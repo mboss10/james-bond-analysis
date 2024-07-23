@@ -6,10 +6,10 @@ def clean_data(df):
     df = df.dropna()
     
     # Convert 'year' to datetime
-    df['year'] = pd.to_datetime(df['year'], format='%Y')
+    df['Year'] = pd.to_datetime(df['Year'], format='%Y')
     
     # Ensure numeric columns are of the correct type
-    numeric_columns = ['runtime_minutes', 'bond_kills', 'imdb_rating', 'rotten_tomatoes_rating']
+    numeric_columns = ['Film_Length', 'Kills_Bond', 'Avg_User_IMDB', 'Avg_User_Rtn_Tom']
     df[numeric_columns] = df[numeric_columns].apply(pd.to_numeric, errors='coerce')
     
     return df

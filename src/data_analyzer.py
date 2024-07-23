@@ -3,12 +3,12 @@ import numpy as np
 
 def analyze_ratings_correlation(df):
     """Analyze correlation between IMDb and Rotten Tomatoes ratings."""
-    return df['imdb_rating'].corr(df['rotten_tomatoes_rating'])
+    return df['Avg_User_IMDB'].corr(df['Avg_User_Rtn_Tom'])
 
 def analyze_movie_lengths(df):
     """Analyze movie lengths over time."""
-    return df.groupby(df['year'].dt.decade)['runtime_minutes'].mean()
+    return df.groupby(df['Year'])['Film_Length'].mean()
 
 def analyze_kills_vs_ratings(df):
     """Analyze relationship between Bond's kills and movie ratings."""
-    return df[['bond_kills', 'imdb_rating', 'rotten_tomatoes_rating']].corr()
+    return df[['Kills_Bond', 'Avg_User_IMDB', 'Avg_User_Rtn_Tom']].corr()
